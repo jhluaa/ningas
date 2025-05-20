@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>致橡树 | To the Oak Tree</title>
+  <!-- ===== 依赖 CDN ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     主题：致橡树  诗歌排版页
+     设计：柔和林间色调 + 叶片飘落动效
+  ============================================================ */
+
+  /* ---- 颜色变量 ---- */
+  :root {
+    --forest-light: #e6f4e6;  /* 淡绿 */
+    --forest-mid:   #c9e2c9;  /* 中绿 */
+    --forest-dark:  #a4cda4;  /* 深绿 */
+    --text-main:    #2e3b2e;  /* 深墨绿 */
+    --text-sub:     #567456;  /* 次要文字 */
+    --heading:      #2f4e2f;  /* 标题 */
+    --leaf-1:       #7db97d;  /* 叶片色 1 */
+    --leaf-2:       #5c985c;  /* 叶片色 2 */
+  }
+
+  /* ---- 全局 ---- */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Noto Serif SC', serif;
+    color: var(--text-main);
+    background: linear-gradient(135deg,var(--forest-light) 0%, var(--forest-mid) 40%, var(--forest-dark) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---- 飘落叶片动效 ---- */
+  .leaf {
+    position: fixed;
+    top: -10vh;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--leaf-1);
+    opacity: 0.8;
+    animation: fall var(--fall-time) linear infinite;
+  }
+  @keyframes fall {
+    0%   { transform: translateX(0)   rotate(0deg); }
+    100% { transform: translateX(100vw) rotate(360deg); top: 110vh; }
+  }
+  /* 第二层叶片色彩 */
+  .leaf.alt { color: var(--leaf-2); opacity: 0.9; }
+
+  /* ---- 版心 ---- */
+  .container-poem {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 2rem 120px;
+  }
+
+  /* ---- 标题 ---- */
+  .title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .title h1 {
+    font-weight: 700;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    color: var(--heading);
+  }
+  .title small {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-sub);
+  }
+
+  /* ---- 诗文 ---- */
+  .verse {
+    font-size: 1.3rem;
+    margin: 1.2rem 0;
+    line-height: 2;
+    text-indent: 2em;
+  }
+  .verse:first-child { text-indent: 0; }
+
+  /* ---- 页脚 ---- */
+  footer {
+    text-align: center;
+    padding: 40px 10px 60px;
+    font-size: 0.9rem;
+    color: var(--text-sub);
+  }
+
+  /* ---- 装饰分隔线 ---- */
+  .divider {
+    width: 160px;
+    height: 2px;
+    margin: 60px auto;
+    background: var(--text-sub);
+    opacity: 0.4;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ===== 飘落叶片（使用 &#xf06c; Font Awesome leaf-icon）===== -->
+<script>
+  const leafIcon = `<i class="fa-solid fa-leaf"></i>`;
+  const totalLeaves = 18; // 控制数量
+  for (let i = 0; i < totalLeaves; i++) {
+    const span = document.createElement('span');
+    span.className = 'leaf' + (i % 2 ? ' alt' : '');
+    span.style.left = Math.random() * 100 + 'vw';
+    span.style.setProperty('--fall-time', 10 + Math.random() * 10 + 's');
+    span.innerHTML = leafIcon;
+    document.body.appendChild(span);
+  }
+</script>
+
+<!-- ===== 主体内容 ===== -->
+<div class="container-poem">
+  <div class="title">
+    <h1>致橡树</h1>
+    <small>—— 舒婷 · 1977</small>
+  </div>
+
+  <p class="verse">我如果爱你——</p>
+  <p class="verse">绝不像攀援的凌霄花，</p>
+  <p class="verse">借你的高枝炫耀自己；</p>
+  <p class="verse">我如果爱你——</p>
+  <p class="verse">绝不学痴情的鸟儿，</p>
+  <p class="verse">为绿荫重复单调的歌曲；</p>
+  <p class="verse">也不止像泉源，</p>
+  <p class="verse">常年送来清凉的慰藉；</p>
+  <p class="verse">也不止像险峰，</p>
+  <p class="verse">增加你的高度，衬托你的威仪。</p>
+
+  <div class="divider"></div>
+
+  <p class="verse">甚至日光。</p>
+  <p class="verse">甚至春雨。</p>
+  <p class="verse">不，这些都还不够！</p>
+
+  <p class="verse">我必须是你近旁的一株木棉，</p>
+  <p class="verse">作为树的形象和你站在一起。</p>
+  <p class="verse">根，紧握在地下；</p>
+  <p class="verse">叶，相触在云里。</p>
+  <p class="verse">每一阵风吹过，</p>
+  <p class="verse">我们都互相致意，</p>
+  <p class="verse">却没有人，</p>
+  <p class="verse">听懂我们的言语。</p>
+
+  <div class="divider"></div>
+
+  <p class="verse">你有你的铜枝铁干，</p>
+  <p class="verse">像刀，像剑，</p>
+  <p class="verse">也像戟；</p>
+  <p class="verse">我有我红硕的花朵，</p>
+  <p class="verse">像沉重的叹息，</p>
+  <p class="verse">又像英勇的火炬。</p>
+
+  <p class="verse">我们分担寒潮、风雷、霹雳；</p>
+  <p class="verse">我们共享雾霭、流岚、虹霓。</p>
+
+  <p class="verse">仿佛永远分离，</p>
+  <p class="verse">却又终身相依。</p>
+  <p class="verse">这才是伟大的爱情，</p>
+  <p class="verse">坚贞就在这里：</p>
+
+  <p class="verse">爱——</p>
+  <p class="verse">不仅爱你伟岸的身躯，</p>
+  <p class="verse">也爱你坚持的位置，</p>
+  <p class="verse">足下的土地。</p>
+</div>
+
+<footer>
+  &copy; 2025 致橡树 · 个人阅读分享页
+</footer>
+
+</body>
+</html>
